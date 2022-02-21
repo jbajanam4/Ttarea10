@@ -27,30 +27,21 @@
   };
 
   // Initialize Firebase
-  export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-export const db = getFirestore();
+  const db = getFirestore();
 
-/**
- * Save a New Task in Firestore
- * @param {string} title the title of the Task
- * @param {string} description the description of the Task
- */
-export const saveTask = (title, description) =>
-  addDoc(collection(db, "tasks"), { title, description });
+  export const saveTask = (title, description)=> 
+      addDoc(collection(db,"tasks"), {title, description});
+      
+ export const getTasks = () => getDocs(collection(db, "tasks"));
 
-export const onGetTasks = (callback) =>
+ export const onGetTasks = (callback) => 
   onSnapshot(collection(db, "tasks"), callback);
 
-/**
- *
- * @param {string} id Task ID
- */
-export const deleteTask = (id) => deleteDoc(doc(db, "tasks", id));
-
-export const getTask = (id) => getDoc(doc(db, "tasks", id));
-
-export const updateTask = (id, newFields) =>
-  updateDoc(doc(db, "tasks", id), newFields);
-
-export const getTasks = () => getDocs(collection(db, "tasks"));
+  export const deleteTask = (id) => deleteDoc(doc(de,"tasks", id));
+  
+  export const getTask = (id) => getDoc(doc(db,"tasks", id));
+   
+  export const updateTask = (id, newFields) => 
+   updateDoc (doc(db,"tasks", id), newFields);
